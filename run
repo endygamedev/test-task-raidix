@@ -1,0 +1,21 @@
+#!/bin/bash
+GREEN="\033[0;32m"
+NC="\033[0m"
+
+printf "${GREEN}CREATING TEMP ARCHIVE${NC}\n"
+mv src helloraidix
+tar -czvf helloraidix.tar.gz helloraidix
+mv helloraidix src
+
+printf "\n\n${GREEN}MOVING FILES IN \`~/rpmbuild\` DIRECTORY${NC}\n"
+mv helloraidix.tar.gz ~/rpmbuild/SOURCES
+cp helloraidix.spec ~/rpmbuild/SPECS
+
+printf "\n\n${GREEN}BUILDING PACKAGE${NC}\n"
+rpmbuild -ba ~/rpmbuild/SPECS/helloraidix.spec
+
+printf "\n\n${GREEN}INSTALLING PACKAGE${NC}\n"
+sudo rpm -ivh ~/rpmbuild/RPMS/x86_64/helloraidix-1.0-0.x86_64.rpm
+
+printf "\n\n${GREEN}RUNNING PACKAGE${NC}\n"
+helloraidix
