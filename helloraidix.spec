@@ -6,7 +6,7 @@ Group:		Applications/Productivity
 License:	GPL
 Source0:	helloraidix.tar.gz
 BuildRequires:	gcc, make
-Requires:    libc.so.6
+Requires:       libc.so.6
 
 
 %description
